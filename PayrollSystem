@@ -3,15 +3,20 @@ import java.util.Scanner;
 public class PayrollSystem {
    public static void main(String[] args) {
       SalariedEmployee employeeA = new SalariedEmployee(
-    		  "John", "Smith", "111-11-1111", 6, 15, 1944, 5, 20, 1968, 800.00);
+    		  "John", "Smith", "111-11-1111", 6, 15, 1944, 800.00);
+      employeeA.setStartDate(5, 20, 1968);
       HourlyEmployee employeeB = new HourlyEmployee(
-    		  "Karen", "Price", "222-22-2222", 12, 29, 1960, 4, 8, 1983, 16.75, 40);
+    		  "Karen", "Price", "222-22-2222", 12, 29, 1960, 16.75, 40);
+      employeeB.setStartDate(4, 8, 1983);
       CommissionEmployee employeeC = new CommissionEmployee(
-    		  "Sue", "Jones", "333-33-3333", 9, 8, 1954, 1, 2, 1982, 10000, .06);
+    		  "Sue", "Jones", "333-33-3333", 9, 8, 1954, 10000, .06);
+      employeeC.setStartDate(1, 2, 1982);
       BasePlusCommissionEmployee employeeD = new BasePlusCommissionEmployee( 
     		  "Bob", "Lewis", "444-44-4444", 3, 2, 1965, 9, 9, 1988, 5000, .04, 300);
+      employeeD.setStartDate(9, 9, 1988);
       SalariedEmployee employeeE = new SalariedEmployee(
-    		  "Eric", "Kim", "555-55-5555", 7, 1, 1946, 1, 22, 1984, 800.00);
+    		  "Eric", "Kim", "555-55-5555", 7, 1, 1946, 800.00);
+      employeeE.setStartDate(1, 22, 1984);
 
       System.out.println("\nEmployees processed individually:\n");
       
