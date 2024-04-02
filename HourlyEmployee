@@ -8,11 +8,10 @@ private double hours; // hours worked for week
 
 // eight-argument constructor
 public HourlyEmployee( String first, String last, String ssn, 
-	      int birthMonth, int birthDay, int birthYear,
-	      int startMonth, int startDay, int startYear, 
+	      int month, int day, int year, 
    double hourlyWage, double hoursWorked )
 {
-   super( first, last, ssn, birthMonth, birthDay, birthYear, startMonth, startDay, startYear );
+   super( first, last, ssn, month, day, year );
    setWage( hourlyWage );
    setHours( hoursWorked );
 } // end eight-argument HourlyEmployee constructor
