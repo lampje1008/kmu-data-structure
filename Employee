@@ -8,14 +8,12 @@ public abstract class Employee
 
    // six-argument constructor
    public Employee( String first, String last, String ssn, 
-      int birthMonth, int birthDay, int birthYear,
-      int startMonth, int startDay, int startYear)
+      int month, int day, int year)
    {
       firstName = first;
       lastName = last;
       socialSecurityNumber = ssn;
       birthDate = new Date( birthMonth, birthDay, birthYear );
-      startDate = new Date( startMonth, startDay, startYear );
    } // end six-argument Employee constructor
 
    // set first name
