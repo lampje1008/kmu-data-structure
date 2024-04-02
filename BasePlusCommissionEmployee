@@ -7,11 +7,10 @@ private double baseSalary; // base salary per week
 
 // nine-argument constructor
 public BasePlusCommissionEmployee(String first, String last, String ssn, 
-	      int birthMonth, int birthDay, int birthYear,
-	      int startMonth, int startDay, int startYear, 
-   double sales, double rate, double salary )
+	      int month, int day, int year,
+		double sales, double rate, double salary )
 {
-   super( first, last, ssn, birthMonth, birthDay, birthYear, startMonth, startDay, startYear , sales, rate );
+   super( first, last, ssn, month, day, year, sales, rate );
    setBaseSalary( salary );
 } // end nine-argument BasePlusCommissionEmployee constructor
 
