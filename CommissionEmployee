@@ -8,10 +8,10 @@ private double commissionRate; // commission percentage
 
 // eight-argument constructor
 public CommissionEmployee(String first, String last, String ssn, 
-	      int birthMonth, int birthDay, int birthYear,
-	      int startMonth, int startDay, int startYear, double sales, double rate )
+	      int month, int day, int year,
+		double sales, double rate )
 {
-   super( first, last, ssn, birthMonth, birthDay, birthYear, startMonth, startDay, startYear );
+   super( first, last, ssn, month, day, year );
    setGrossSales( sales );
    setCommissionRate( rate );
 } // end eight-argument CommissionEmployee constructor
