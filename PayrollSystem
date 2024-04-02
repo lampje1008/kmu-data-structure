@@ -1,0 +1,104 @@
+import java.util.Scanner;
+
+public class PayrollSystem {
+   public static void main(String[] args) {
+      SalariedEmployee employeeA = new SalariedEmployee(
+    		  "John", "Smith", "111-11-1111", 6, 15, 1944, 5, 20, 1968, 800.00);
+      HourlyEmployee employeeB = new HourlyEmployee(
+    		  "Karen", "Price", "222-22-2222", 12, 29, 1960, 4, 8, 1983, 16.75, 40);
+      CommissionEmployee employeeC = new CommissionEmployee(
+    		  "Sue", "Jones", "333-33-3333", 9, 8, 1954, 1, 2, 1982, 10000, .06);
+      BasePlusCommissionEmployee employeeD = new BasePlusCommissionEmployee( 
+    		  "Bob", "Lewis", "444-44-4444", 3, 2, 1965, 9, 9, 1988, 5000, .04, 300);
+      SalariedEmployee employeeE = new SalariedEmployee(
+    		  "Eric", "Kim", "555-55-5555", 7, 1, 1946, 1, 22, 1984, 800.00);
+
+      System.out.println("\nEmployees processed individually:\n");
+      
+      System.out.printf("%s\n%s: $%,.2f\n\n",
+    		  employeeA, "earned", employeeA.earnings());
+      System.out.printf( "%s\n%s: $%,.2f\n\n",
+    		  employeeB, "earned", employeeB.earnings());
+      System.out.printf( "%s\n%s: $%,.2f\n\n",
+    		  employeeC, "earned", employeeC.earnings());
+      System.out.printf( "%s\n%s: $%,.2f\n\n",
+    		  employeeD, "earned", employeeD.earnings());
+      System.out.printf( "%s\n%s: $%,.2f\n\n",
+    		  employeeE, "earned", employeeE.earnings());
+
+      Employee[] employees = new Employee[5]; 
+      employees[0] = employeeA;
+      employees[1] = employeeB;
+      employees[2] = employeeC; 
+      employees[3] = employeeD;
+      employees[4] = employeeE;
+
+      Scanner input = new Scanner(System.in);
+      int currentMonth;
+      int currentDay;
+      int currentYear;
+
+      System.out.print("Enter the current year: ");
+      currentYear = input.nextInt();
+      System.out.println();
+      
+      do {
+    	  System.out.print("Enter the current month(1-12): ");
+          currentMonth = input.nextInt();
+          System.out.println();
+      } while (currentMonth < 1 || currentMonth > 12);
+      
+      while (true) {
+    	  System.out.print("Enter the current day(1-31 based on month): ");
+          currentDay = input.nextInt();
+          System.out.println();
+          
+          int[] daysPerMonth = 
+        	  {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+          
+          if (currentDay > 0 && currentDay <= daysPerMonth[currentMonth])
+              break;
+
+          if (currentMonth == 2 && currentDay == 29 && (currentYear % 400 == 0 || 
+              (currentYear % 4 == 0 && currentYear % 100 != 0)))
+              break;
+      }
+
+      System.out.println("Employees processed polymorphically:\n");
+
+      for (Employee currentEmployee : employees) {
+    	  System.out.println(currentEmployee);
+
+          if (currentEmployee instanceof BasePlusCommissionEmployee) {
+        	  BasePlusCommissionEmployee employee = 
+        			  (BasePlusCommissionEmployee) currentEmployee;
+
+          double oldBaseSalary = employee.getBaseSalary();
+          employee.setBaseSalary(1.10 * oldBaseSalary);
+          System.out.printf("new base salary with 10%% increase is: $%,.2f\n",
+        		  employee.getBaseSalary());
+          }
+          
+          // Birthday Bonus
+          if (currentEmployee.getStartDate().getMonth() == currentMonth)
+        	  System.out.println("earned ₩100,000 birthday bonus");
+          
+          // Bonus For Long-term Employee
+          if (currentYear - currentEmployee.getStartDate().getYear() >= 10 ||
+        	        (currentYear - currentEmployee.getStartDate().getYear() == 9 &&
+                    currentMonth > currentEmployee.getStartDate().getMonth()) ||
+            (currentYear - currentEmployee.getStartDate().getYear() == 9 &&
+                    currentMonth == currentEmployee.getStartDate().getMonth() &&
+                    currentDay >= currentEmployee.getStartDate().getDay())) {
+        	  System.out.printf("bonus for long-term(over ten years) employee: $%,.2f\n",
+        			  currentEmployee.earnings() * 0.10);
+          }
+          
+          System.out.println();
+      }
+
+      for (int j = 0; j < employees.length; j++)
+          System.out.printf("Employee %d is a %s\n", j, 
+        		  employees[j].getClass().getSimpleName()); 
+   }
+}
